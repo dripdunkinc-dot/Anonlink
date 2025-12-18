@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Iheb Hadoudi | No-Code MVP Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { scroll-behavior: smooth; }
+        html { scroll-padding-top: 5rem; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-mesh {
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0, transparent 50%);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .pulse-whatsapp { animation: pulse-whatsapp 2s infinite; }
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "framer-motion": "https://esm.sh/framer-motion@^11.11.11",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+</head>
+<body class="bg-slate-950 text-slate-200 selection:bg-blue-500/30">
+    <div id="root"></div>
+
+    <script type="module">
+        import React, { useState, useEffect } from 'react';
+        import ReactDOM from 'react-dom/client';
+        import { motion, AnimatePresence } from 'framer-motion';
+        import { 
+          Zap, Rocket, Smartphone, Settings, Globe, Clock, CheckCircle2, ShieldCheck,
+          MessageSquare, ArrowRight, Sparkles, ShoppingCart, Briefcase,
+          ChevronRight, Star, Check, Send, Loader2
+        } from 'lucide-react';
+
+        // --- CONSTANTS ---
+        const PERSONAL_INFO = {
+          role: "No-Code MVP Developer & Startup Builder",
+          whatsappLink: "https://wa.me/21620200524?text=Hi%20Iheb%2C%20I'm%20interested%20in%20building%20an%20MVP.",
+          fiverrLink: "https://fr.fiverr.com/s/gDkBbjL",
+          upworkLink: "https://www.upwork.com/freelancers/~017bae96678ac99372?mp_source=share"
+        };
+
+        const PROJECTS = [
+          {
+            name: "JumpBot Blockchain",
+            type: "Web3 Landing Page",
+            problem: "Investor-ready landing page needed to explain complex tech.",
+            solution: "Interactive 3D links and dark-mode premium UI built in Webflow.",
+            tools: ["Webflow", "Spline", "GSAP"],
+            buildTime: "5 Days",
+            outcome: "Generated $200k+ in pre-seed investor interest.",
+            image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=1600"
+          },
+          {
+            name: "Crypto Academy LMS",
+            type: "Learning Platform",
+            problem: "Secure gated platform required for automated course delivery.",
+            solution: "Custom LMS with module locking and automated student onboarding.",
+            tools: ["Bubble", "Airtable", "Stripe"],
+            buildTime: "10 Days",
+            outcome: "Successfully scaled to 500+ students without manual overhead.",
+            image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&q=80&w=1600"
+          },
+          {
+            name: "Relearn Marketplace",
+            type: "Skill Marketplace",
+            problem: "Marketplace for niche creators with student social features.",
+            solution: "Vibrant marketplace with creator dashboards and real-time social proof.",
+            tools: ["FlutterFlow", "Firebase", "RevenueCat"],
+            buildTime: "14 Days",
+            outcome: "Processed $12,000 in transactions in the first 30 days.",
+            image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1600"
+          }
+        ];
+
+        const PACKAGES = [
+          { name: "Express MVP", delivery: "7 Days", type: "lite", features: ["Core Database Setup", "Essential Auth System", "3 Core Functional Pages", "Stripe Payment Hook", "7 Days Priority Support"] },
+          { name: "SaaS Launch", delivery: "14 Days", type: "full", features: ["Full SaaS Logic Flow", "Custom User Dashboards", "API & Tool Integrations", "Premium UI/UX Polish", "30 Days Tech Support", "SEO & Analytics Setup"] },
+          { name: "Enterprise", delivery: "21+ Days", type: "enterprise", features: ["AI/LLM Implementation", "Marketplace Logic", "Custom Architecture", "Admin Control Panels", "Performance Scaling", "White-Glove Strategy"] }
+        ];
+
+        // --- COMPONENTS ---
+        const Navbar = () => {
+          const [scrolled, setScrolled] = useState(false);
+          useEffect(() => {
+            const handleScroll = () => setScrolled(window.scrollY > 30);
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+          }, []);
+
+          return React.createElement('nav', { className: `fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'py-3' : 'py-6'}` },
+            React.createElement('div', { className: "max-w-7xl mx-auto px-4" },
+              React.createElement('div', { className: `transition-all duration-500 rounded-full px-8 flex justify-between h-16 items-center ${scrolled ? 'bg-slate-950/80 backdrop-blur-xl border border-slate-800/50 shadow-2xl' : 'bg-transparent'}` },
+                React.createElement('a', { href: "#", className: "text-2xl font-black tracking-tighter uppercase gradient-text" }, "Iheb"),
+                React.createElement('div', { className: "hidden md:flex items-center gap-10" },
+                  ['Services', 'Portfolio', 'Inquiry'].map(item => React.createElement('a', { key: item, href: `#${item.toLowerCase()}`, className: "text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-white" }, item))
+                ),
+                React.createElement('a', { href: "#inquiry", className: "px-6 py-3 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest" }, "Hire Me")
+              )
+            )
+          );
+        };
+
+        const Footer = () => React.createElement('footer', { className: "bg-slate-950 border-t border-slate-900 py-16" },
+          React.createElement('div', { className: "max-w-7xl mx-auto px-4 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-12" },
+            React.createElement('div', null,
+              React.createElement('h2', { className: "text-3xl font-black text-white tracking-tighter uppercase mb-2" }, "Iheb Hadoudi"),
+              React.createElement('p', { className: "text-blue-500 font-black text-[10px] uppercase tracking-[0.3em]" }, PERSONAL_INFO.role)
+            ),
+            React.createElement('div', { className: "flex gap-4" },
+              [PERSONAL_INFO.fiverrLink, PERSONAL_INFO.upworkLink, PERSONAL_INFO.whatsappLink].map((link, i) => React.createElement('a', { key: i, href: link, target: "_blank", className: "p-3 bg-slate-900 border border-slate-800 rounded-xl text-slate-500 hover:text-blue-500 transition-all" }, 
+                i === 0 ? React.createElement(ShoppingCart, { className: "w-5 h-5" }) : i === 1 ? React.createElement(Briefcase, { className: "w-5 h-5" }) : React.createElement(MessageSquare, { className: "w-5 h-5" })
+              ))
+            )
+          )
+        );
+
+        const App = () => {
+          const [formData, setFormData] = useState({ name: '', email: '', brief: '' });
+          const [formState, setFormState] = useState('idle');
+
+          const handleSubmit = (e) => {
+            e.preventDefault();
+            setFormState('submitting');
+            setTimeout(() => {
+              window.open(`https://wa.me/21620200524?text=${encodeURIComponent('Hi, I am ' + formData.name + '. Idea: ' + formData.brief)}`, '_blank');
+              setFormState('success');
+              setTimeout(() => setFormState('idle'), 3000);
+            }, 800);
+          };
+
+          return React.createElement('div', { className: "bg-slate-950" },
+            React.createElement(Navbar),
+            
+            // Hero
+            React.createElement('section', { className: "relative min-h-screen flex flex-col items-center justify-center pt-24 px-4 text-center hero-mesh" },
+              React.createElement(motion.div, { initial: { opacity: 0, scale: 0.9 }, animate: { opacity: 1, scale: 1 }, className: "inline-flex items-center gap-2 px-5 py-2 rounded-full bg-slate-900/50 border border-slate-800 text-blue-400 text-[10px] font-black uppercase tracking-[0.25em] mb-10 backdrop-blur-sm" }, 
+                React.createElement(Sparkles, { className: "w-4 h-4" }), " Ship Your Startup MVP in 7–14 Days"),
+              React.createElement(motion.h1, { initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 }, className: "text-6xl md:text-9xl font-black tracking-tighter text-white mb-8 leading-[0.85] uppercase" }, 
+                "I Build Startup ", React.createElement('span', { className: "gradient-text" }, "MVPs Fast")),
+              React.createElement('p', { className: "text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-12 font-medium" }, "Reliable no-code execution for founders who value speed over bureaucracy."),
+              React.createElement('div', { className: "flex flex-col sm:flex-row gap-4 w-full max-w-lg" },
+                React.createElement('a', { href: PERSONAL_INFO.fiverrLink, className: "flex-1 px-8 py-5 bg-[#1dbf73] text-white rounded-[1.5rem] font-black text-lg shadow-xl" }, "Hire on Fiverr"),
+                React.createElement('a', { href: PERSONAL_INFO.upworkLink, className: "flex-1 px-8 py-5 bg-blue-600 text-white rounded-[1.5rem] font-black text-lg shadow-xl" }, "Hire on Upwork")
+              )
+            ),
+
+            // Services
+            React.createElement('section', { id: "services", className: "py-32 px-4 max-w-7xl mx-auto" },
+              React.createElement('h2', { className: "text-5xl md:text-7xl font-black text-white text-center uppercase mb-20 tracking-tighter" }, "Startup ", React.createElement('span', { className: "gradient-text" }, "Packages")),
+              React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-3 gap-8" },
+                PACKAGES.map((pkg, i) => React.createElement(motion.div, { key: i, whileHover: { y: -10 }, className: `p-10 rounded-[3rem] border ${pkg.type === 'full' ? 'border-blue-500 bg-blue-600/5' : 'border-slate-800 bg-slate-900/40'}` },
+                  React.createElement('h3', { className: "text-2xl font-black text-white mb-4" }, pkg.name),
+                  React.createElement('p', { className: "text-blue-400 font-black text-[10px] uppercase tracking-widest mb-8" }, `Timeline: ${pkg.delivery}`),
+                  React.createElement('ul', { className: "space-y-4 mb-10" }, pkg.features.map((f, j) => React.createElement('li', { key: j, className: "flex items-center gap-3 text-slate-400 text-sm" }, React.createElement(Check, { className: "w-4 h-4 text-blue-500" }), f))),
+                  React.createElement('a', { href: "#inquiry", className: "w-full block py-4 text-center rounded-2xl bg-white text-slate-950 font-black" }, "Choose Plan")
+                ))
+              )
+            ),
+
+            // Portfolio
+            React.createElement('section', { id: "portfolio", className: "py-32 bg-slate-900/20" },
+              React.createElement('div', { className: "max-w-7xl mx-auto px-4" },
+                React.createElement('h2', { className: "text-5xl md:text-7xl font-black text-white text-center uppercase mb-20" }, "Verified ", React.createElement('span', { className: "gradient-text" }, "Builds")),
+                React.createElement('div', { className: "space-y-40" },
+                  PROJECTS.map((p, i) => React.createElement('div', { key: i, className: `flex flex-col lg:flex-row gap-16 items-center ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}` },
+                    React.createElement('div', { className: "w-full lg:w-3/5 rounded-[3rem] overflow-hidden border border-slate-800 shadow-2xl" }, React.createElement('img', { src: p.image, className: "w-full object-cover aspect-[16/10]" })),
+                    React.createElement('div', { className: "w-full lg:w-2/5" },
+                      React.createElement('h3', { className: "text-4xl font-black text-white mb-4 uppercase tracking-tighter" }, p.name),
+                      React.createElement('p', { className: "text-slate-400 text-lg mb-8" }, p.problem),
+                      React.createElement('div', { className: "p-6 bg-slate-900/50 border border-slate-800 rounded-3xl" }, React.createElement('p', { className: "text-emerald-400 font-black text-xl" }, p.outcome))
+                    )
+                  ))
+                )
+              )
+            ),
+
+            // Inquiry
+            React.createElement('section', { id: "inquiry", className: "py-32 px-4 max-w-5xl mx-auto" },
+              React.createElement('div', { className: "glass-card p-12 rounded-[3rem] border-slate-800" },
+                React.createElement('h2', { className: "text-4xl font-black text-white mb-8 text-center uppercase" }, "Start Your ", React.createElement('span', { className: "gradient-text" }, "Brief")),
+                React.createElement('form', { onSubmit: handleSubmit, className: "space-y-6" },
+                  React.createElement('input', { required: true, value: formData.name, onChange: e => setFormData({...formData, name: e.target.value}), placeholder: "Name", className: "w-full bg-slate-950 border border-slate-800 rounded-2xl p-5" }),
+                  React.createElement('textarea', { required: true, value: formData.brief, onChange: e => setFormData({...formData, brief: e.target.value}), placeholder: "Describe your idea", rows: 4, className: "w-full bg-slate-950 border border-slate-800 rounded-2xl p-5" }),
+                  React.createElement('button', { className: "w-full py-5 bg-white text-slate-950 rounded-2xl font-black uppercase text-lg" }, 
+                    formState === 'submitting' ? React.createElement(Loader2, { className: "animate-spin mx-auto" }) : "Send to WhatsApp")
+                )
+              )
+            ),
+
+            React.createElement(Footer),
+            
+            // Sticky
+            React.createElement('a', { href: PERSONAL_INFO.whatsappLink, className: "fixed bottom-8 right-8 p-4 bg-slate-900 border border-slate-800 rounded-full shadow-2xl pulse-whatsapp" }, 
+              React.createElement(MessageSquare, { className: "w-8 h-8 text-emerald-500" }))
+          );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(React.createElement(App));
+    </script>
+</body>
+</html>
