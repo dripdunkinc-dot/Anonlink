@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Iheb Hadoudi | No-Code MVP Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-mesh {
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.15) 0, transparent 50%);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .btn-shadow-fiverr { box-shadow: 0 10px 25px -5px rgba(29, 191, 115, 0.3); }
+        .btn-shadow-upwork { box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3); }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+
+        .portfolio-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26"
+  }
+}
+</script>
+</head>
+<body class="selection:bg-indigo-500/30">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-4 py-4">
+        <div class="max-w-5xl mx-auto glass rounded-2xl px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-xl font-800 tracking-tighter uppercase gradient-text">Iheb</a>
+            <div class="flex items-center gap-6">
+                <a href="#portfolio" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Portfolio</a>
+                <a href="#contact" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Hire Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-40 pb-20 px-6 hero-mesh overflow-hidden min-h-screen flex flex-col justify-center">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass mb-8 border-indigo-500/20">
+                <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-indigo-300">Available for March 2024</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-8xl font-800 tracking-tighter text-white mb-6 leading-[0.85] uppercase">
+                Ship Your Startup <br> <span class="gradient-text">MVPs Fast</span>
+            </h1>
+            
+            <p class="text-lg md:text-2xl text-slate-400 max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
+                From idea to working product in 7–14 days. Reliable no-code execution for founders who value speed over bureaucracy.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://fr.fiverr.com/s/gDkBbjL" target="_blank" class="w-full sm:w-auto px-10 py-5 bg-[#1dbf73] text-white rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-95 btn-shadow-fiverr">
+                    Hire on Fiverr
+                </a>
+                
+                <a href="https://www.upwork.com/freelancers/~017bae96678ac99372?mp_source=share" target="_blank" class="w-full sm:w-auto px-10 py-5 bg-blue-600 text-white rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-95 btn-shadow-upwork">
+                    Hire on Upwork
+                </a>
+            </div>
+
+            <a href="https://wa.me/21620200524" target="_blank" class="mt-8 inline-flex items-center gap-2 text-slate-500 hover:text-white font-bold transition-all group">
+                <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-emerald-500/20 group-hover:text-emerald-400 transition-all">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.767 5.767 0 1.141.33 2.203.9 3.103l-.933 3.413 3.497-.918c.884.53 1.913.83 3.011.83 3.181 0 5.767-2.586 5.767-5.767 0-3.181-2.586-5.767-5.767-5.767zm3.394 8.203c-.145.411-.741.741-1.028.784-.287.043-.645.071-1.056-.057-.411-.128-1.012-.398-1.727-.714-1.895-.838-3.118-2.766-3.213-2.894-.095-.128-.772-1.026-.772-1.939 0-.913.479-1.36.65-1.545.171-.185.371-.231.495-.231.124 0 .248.001.353.006.113.005.263-.043.412.317.15.361.512 1.246.557 1.339.045.093.075.201.015.318-.06.117-.09.191-.18.297-.09.106-.188.238-.268.32-.08.082-.163.17-.07.33.093.16.411.677.882 1.097.605.54 1.114.707 1.274.787.16.08.255.067.35-.043.095-.11.405-.47.513-.63.108-.16.216-.134.363-.079.147.056.931.439 1.091.519.16.08.266.12.304.185.038.065.038.375-.107.786z"/></svg>
+                </span>
+                Quick Question? WhatsApp Me
+            </a>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="py-32 px-6 bg-slate-950" id="portfolio">
+        <div class="max-w-6xl mx-auto">
+            <div class="reveal mb-20 text-center">
+                <h2 class="text-4xl md:text-7xl font-800 tracking-tighter text-white uppercase mb-6 leading-none">Verified <span class="gradient-text">Builds</span></h2>
+                <p class="text-slate-500 text-xl font-medium max-w-2xl mx-auto">Selected projects built for global startups using no-code excellence.</p>
+            </div>
+            
+            <div class="space-y-32">
+                <!-- JumpBot -->
+                <div class="reveal flex flex-col lg:flex-row gap-12 items-center">
+                    <div class="w-full lg:w-3/5 group">
+                        <div class="relative overflow-hidden rounded-[2.5rem] border border-slate-800 bg-slate-900 shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=1600" alt="JumpBot Blockchain" class="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-2/5 flex flex-col gap-6">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-1.5 bg-slate-900 border border-slate-800 text-blue-400 rounded-full text-[9px] font-black uppercase tracking-widest">Webflow</span>
+                            <span class="px-4 py-1.5 bg-slate-900 border border-slate-800 text-blue-400 rounded-full text-[9px] font-black uppercase tracking-widest">GSAP</span>
+                        </div>
+                        <h3 class="text-4xl md:text-5xl font-800 text-white tracking-tighter leading-none uppercase">JumpBot Blockchain</h3>
+                        <p class="text-slate-400 font-medium">Unleashing the Power of Blockchain. High-converting landing page with complex dark-mode aesthetics and interactive scrolls.</p>
+                        <div class="p-6 bg-slate-900/50 border border-slate-800 rounded-3xl">
+                            <p class="text-emerald-400 font-800 text-lg mb-1">Generated $200k+ investor interest.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Crypto Academy -->
+                <div class="reveal flex flex-col lg:flex-row-reverse gap-12 items-center">
+                    <div class="w-full lg:w-3/5 group">
+                        <div class="relative overflow-hidden rounded-[2.5rem] border border-slate-800 bg-slate-900 shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&q=80&w=1600" alt="Crypto Academy" class="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-2/5 flex flex-col gap-6">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-1.5 bg-slate-900 border border-slate-800 text-emerald-400 rounded-full text-[9px] font-black uppercase tracking-widest">Bubble</span>
+                            <span class="px-4 py-1.5 bg-slate-900 border border-slate-800 text-emerald-400 rounded-full text-[9px] font-black uppercase tracking-widest">Airtable</span>
+                        </div>
+                        <h3 class="text-4xl md:text-5xl font-800 text-white tracking-tighter leading-none uppercase">Crypto Academy</h3>
+                        <p class="text-slate-400 font-medium">Cryptocurrency for Beginners. A comprehensive LMS with gated content, automated student tracks, and secure crypto-styled UI.</p>
+                        <div class="p-6 bg-slate-900/50 border border-slate-800 rounded-3xl">
+                            <p class="text-emerald-400 font-800 text-lg mb-1">Scaling to 500+ daily users.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Relearn -->
+                <div class="reveal flex flex-col lg:flex-row gap-12 items-center">
+                    <div class="w-full lg:w-3/5 group">
+                        <div class="relative overflow-hidden rounded-[2.5rem] border border-slate-800 bg-slate-900 shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1600" alt="Relearn Skills Marketplace" class="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-2/5 flex flex-col gap-6">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-1.5 bg-slate-900 border border-slate-800 text-purple-400 rounded-full text-[9px] font-black uppercase tracking-widest">FlutterFlow</span>
+                            <span class="px-4 py-1.5 bg-slate-900 border border-slate-800 text-purple-400 rounded-full text-[9px] font-black uppercase tracking-widest">Firebase</span>
+                        </div>
+                        <h3 class="text-4xl md:text-5xl font-800 text-white tracking-tighter leading-none uppercase">Relearn Platform</h3>
+                        <p class="text-slate-400 font-medium">Build Your Skills, Anytime, Anywhere. A vibrant, social-first skill marketplace with creator dashboards and real-time updates.</p>
+                        <div class="p-6 bg-slate-900/50 border border-slate-800 rounded-3xl">
+                            <p class="text-emerald-400 font-800 text-lg mb-1">$12k+ transactions first 30 days.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="py-24 px-6 bg-slate-900/20" id="services">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal mb-16">
+                <h2 class="text-3xl md:text-5xl font-800 tracking-tighter text-white uppercase mb-4">Everything You Need</h2>
+                <p class="text-slate-500 font-medium">I handle the tech so you can focus on the growth strategy.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="reveal p-8 glass rounded-[2.5rem] hover:border-indigo-500/30 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-800 text-white mb-3 uppercase tracking-tight">MVP Launch</h3>
+                    <p class="text-slate-400 leading-relaxed font-medium">Get a functional product built in record time with Bubble or FlutterFlow.</p>
+                </div>
+                
+                <div class="reveal p-8 glass rounded-[2.5rem] hover:border-pink-500/30 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-800 text-white mb-3 uppercase tracking-tight">Custom SaaS</h3>
+                    <p class="text-slate-400 leading-relaxed font-medium">Bespoke dashboards and complex user logic built for modern scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="py-24 px-6 relative overflow-hidden" id="contact">
+        <div class="max-w-5xl mx-auto">
+            <div class="p-10 md:p-20 rounded-[3rem] bg-indigo-600 text-center relative overflow-hidden shadow-2xl">
+                <div class="absolute inset-0 bg-white/5 opacity-50"></div>
+                <div class="relative z-10">
+                    <h2 class="text-4xl md:text-7xl font-800 tracking-tighter text-white mb-8 uppercase leading-none">Ready to Launch?</h2>
+                    <p class="text-indigo-100 text-lg md:text-2xl max-w-2xl mx-auto mb-12 font-medium">
+                        I'm currently accepting new projects. Let's talk about your vision today.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                        <a href="https://wa.me/21620200524" target="_blank" class="w-full sm:w-auto px-12 py-6 bg-white text-indigo-600 rounded-2xl font-800 text-xl shadow-xl hover:bg-slate-50 transition-all active:scale-95">
+                            WhatsApp Chat
+                        </a>
+                        <a href="https://fr.fiverr.com/s/gDkBbjL" target="_blank" class="w-full sm:w-auto text-white font-bold text-lg hover:underline underline-offset-8">
+                            View Fiverr Gigs →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-slate-900 bg-slate-950">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-center">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-[0.3em] text-slate-600">Iheb Hadoudi</p>
+                <p class="text-[10px] text-slate-700 font-medium uppercase tracking-widest mt-1">No-Code MVP Developer • Startup Builder</p>
+            </div>
+            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-700">© 2024 Tunisia • Worldwide Delivery</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const observerOptions = { threshold: 0.1 };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+            
+            reveals.forEach(reveal => observer.observe(reveal));
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
